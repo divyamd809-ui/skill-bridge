@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge | Connect Your Potential to Opportunity</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-dot"></div>
+                SkillBridge
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How it Works</a>
+                <div id="auth-links" class="nav-links">
+                    <a href="auth.html">Login</a>
+                    <a href="auth.html" class="btn btn-primary">Sign Up</a>
+                </div>
+                <div id="user-links" class="nav-links hidden">
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="#" onclick="api.logout()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero container">
+            <h1 class="fade-in">Bridge the Gap Between <br><span class="text-primary">Skills & Career</span></h1>
+            <p class="fade-in" style="animation-delay: 0.1s">Analyze your strengths, discover high-growth domains, and follow curated learning paths designed for your experience level.</p>
+            <div class="hero-actions fade-in" style="animation-delay: 0.2s">
+                <a href="auth.html" class="btn btn-primary">Start Your Journey</a>
+                <a href="#how-it-works" class="btn btn-outline">Learn More</a>
+            </div>
+        </section>
+
+        <section id="features" class="container" style="padding: 4rem 0">
+            <h2 style="text-align: center; margin-bottom: 3rem">Empowering Your Growth</h2>
+            <div class="grid">
+                <div class="glass-card fade-in" style="animation-delay: 0.3s">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem">🎯</div>
+                    <h3>Smart Analysis</h3>
+                    <p>Advanced matching algorithm that maps your technical and soft skills to compatible career domains.</p>
+                </div>
+                <div class="glass-card fade-in" style="animation-delay: 0.4s">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem">🗺️</div>
+                    <h3>Curated Roadmaps</h3>
+                    <p>Structured learning paths tailored for students (foundation) and professionals (specialization).</p>
+                </div>
+                <div class="glass-card fade-in" style="animation-delay: 0.5s">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem">🔓</div>
+                    <h3>Trial Explorer</h3>
+                    <p>Access limited-time free trials and coupons for top-tier courses on Coursera, Udemy, and more.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" style="background: var(--secondary); padding: 6rem 0; margin-top: 4rem">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 4rem">How SkillBridge Works</h2>
+                <div style="display: flex; gap: 4rem; flex-wrap: wrap; justify-content: center">
+                    <div style="flex: 1; min-width: 250px; text-align: center">
+                        <div style="width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-weight: 700; font-size: 1.5rem">1</div>
+                        <h3>Select Skills</h3>
+                        <p>Tell us what you're good at, from coding to project management.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 250px; text-align: center">
+                        <div style="width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-weight: 700; font-size: 1.5rem">2</div>
+                        <h3>Get Suggestions</h3>
+                        <p>Receive top-3 domain matches with detailed career metrics.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 250px; text-align: center">
+                        <div style="width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-weight: 700; font-size: 1.5rem">3</div>
+                        <h3>Master Roadmap</h3>
+                        <p>Follow a step-by-step path to landing your dream job.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <p>&copy; 2024 SkillBridge. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem">Built for modern careers with Lilac & White elegance.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = api.getUser();
+            if (user) {
+                document.getElementById('auth-links').classList.add('hidden');
+                document.getElementById('user-links').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
