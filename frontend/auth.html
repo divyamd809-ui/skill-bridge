@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge | Join Us</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><div class="logo-dot"></div>SkillBridge</a>
+        </div>
+    </nav>
+
+    <div class="auth-container container">
+        <div class="glass-card fade-in" style="max-width: 480px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 2.5rem; font-size: 2.25rem; font-weight: 700;" id="auth-title">Welcome Back</h2>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="tab-login" onclick="switchAuth('login')">Login</div>
+                <div class="auth-tab" id="tab-register" onclick="switchAuth('register')">Register</div>
+            </div>
+
+            <form id="auth-form">
+                <div id="username-group" class="form-group hidden">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="johndoe">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <div id="experience-group" class="form-group hidden">
+                    <label for="experience">Experience Level</label>
+                    <select id="experience">
+                        <option value="student">Student / Beginner</option>
+                        <option value="professional">Working Professional</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem" id="auth-submit">Login</button>
+            </form>
+            
+            <p id="auth-message" style="text-align: center; margin-top: 1.5rem; color: var(--error); font-size: 0.9rem; min-height: 1.5rem"></p>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

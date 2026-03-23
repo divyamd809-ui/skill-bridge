@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge | Your Learning Roadmap</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .course-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--secondary);
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+        }
+        .course-card:hover { 
+            transform: translateY(-8px);
+            border-color: var(--primary-light); 
+            box-shadow: var(--shadow-lg); 
+        }
+        .platform-badge {
+            background: var(--secondary);
+            color: var(--primary-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .trial-badge {
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-left: 0.75rem;
+            text-transform: uppercase;
+        }
+        .bookmark-btn {
+            background: white;
+            border: 1px solid var(--secondary);
+            color: var(--text-light);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-sm);
+        }
+        .bookmark-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+        .bookmark-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .filter-bar {
+            background: var(--white);
+            padding: 1.5rem 2.5rem;
+            border-radius: var(--radius-lg);
+            display: flex;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+            align-items: center;
+            border: 1px solid var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+        .roadmap-step {
+            position: relative;
+        }
+        .roadmap-step::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 0;
+            bottom: -2.5rem;
+            width: 2px;
+            background: var(--primary-light);
+            opacity: 0.5;
+        }
+        .roadmap-step:last-child::before { display: none; }
+        .step-num {
+            position: absolute;
+            left: -42px;
+            top: 2.5rem;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border: 4px solid var(--background);
+            border-radius: 50%;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><div class="logo-dot"></div>SkillBridge</a>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="#" onclick="api.logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding: 4rem 2rem;">
+        <div id="roadmap-header" style="margin-bottom: 3rem">
+            <h1 id="domain-name">Loading...</h1>
+            <p id="domain-desc" style="color: var(--text-muted); max-width: 800px; margin-top: 1rem"></p>
+        </div>
+
+        <div class="filter-bar">
+            <span style="font-weight: 600">Filters:</span>
+            <label><input type="checkbox" id="filter-free"> Free Courses</label>
+            <label><input type="checkbox" id="filter-trial"> Has Trial</label>
+            <select id="filter-duration" style="background: white; border: none; padding: 0.5rem; border-radius: 4px;">
+                <option value="all">Any Duration</option>
+                <option value="short">Short (&lt; 8 weeks)</option>
+                <option value="long">Long (&gt; 8 weeks)</option>
+            </select>
+            
+            <div style="margin-left: auto; display: flex; gap: 1rem; align-items: center;">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Switch Domain:</span>
+                <select id="domain-switcher" style="background: white; border: 1px solid var(--secondary); padding: 0.5rem; border-radius: 4px; font-weight: 600;">
+                    <!-- Domains will be loaded here -->
+                </select>
+            </div>
+        </div>
+
+        <div id="roadmap-levels">
+            <!-- Level 1 -->
+            <div class="level-section" id="level-1">
+                <div class="level-header">
+                    <div class="level-badge">1</div>
+                    <div>
+                        <h2 style="font-size: 1.25rem">Foundation</h2>
+                        <p style="font-size: 0.85rem; color: var(--text-muted)">Master the core basics and essential tools.</p>
+                    </div>
+                </div>
+                <div class="courses-grid" id="courses-level-1" style="padding-left: 3rem"></div>
+            </div>
+
+            <!-- Level 2 -->
+            <div class="level-section" id="level-2">
+                <div class="level-header">
+                    <div class="level-badge">2</div>
+                    <div>
+                        <h2 style="font-size: 1.25rem">Core Skills</h2>
+                        <p style="font-size: 0.85rem; color: var(--text-muted)">Build real-world projects and deepen your knowledge.</p>
+                    </div>
+                </div>
+                <div class="courses-grid" id="courses-level-2" style="padding-left: 3rem"></div>
+            </div>
+
+            <!-- Level 3 -->
+            <div class="level-section" id="level-3">
+                <div class="level-header">
+                    <div class="level-badge">3</div>
+                    <div>
+                        <h2 style="font-size: 1.25rem">Advanced / Specialization</h2>
+                        <p style="font-size: 0.85rem; color: var(--text-muted)">Get certified and master industry-level complexities.</p>
+                    </div>
+                </div>
+                <div class="courses-grid" id="courses-level-3" style="padding-left: 3rem"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Commitment Bar -->
+    <div id="commit-bar" class="commit-bar hidden">
+        <div>
+            <h4 style="font-size: 0.9rem">Ready to commit?</h4>
+            <p style="font-size: 0.75rem; color: var(--text-muted)">Save this path to your dashboard to track your full progress.</p>
+        </div>
+        <button id="commit-btn" class="btn btn-primary">Commit to this Path</button>
+    </div>
+
+
+    <script src="js/api.js"></script>
+    <script>checkAuth();</script>
+    <script src="js/roadmap.js"></script>
+</body>
+</html>

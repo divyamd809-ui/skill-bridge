@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge | Your Best Matches</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><div class="logo-dot"></div>SkillBridge</a>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="#" onclick="api.logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding: 4rem 2rem;">
+        <div style="margin-bottom: 3rem; text-align: center;">
+            <h1>Recommended for You</h1>
+            <p style="color: var(--text-muted); margin-top: 0.5rem">Based on your unique skill profile, we've identified these top career paths.</p>
+        </div>
+
+        <!-- Trending Strip -->
+        <div id="trending-container" style="margin-bottom: 3rem">
+            <h4 style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Trending Domains</h4>
+            <div id="trending-strip" class="trending-strip">
+                <!-- Trending pills will be injected here -->
+            </div>
+        </div>
+
+        <div id="domains-grid" class="grid" style="margin-top: 3rem">
+            <!-- Domain matches will be loaded here -->
+            <p>Analyzing your potential...</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem">
+            <a href="skills.html" class="btn btn-outline">← Back to Skills</a>
+        </div>
+    </div>
+
+
+    <script src="js/api.js"></script>
+    <script>checkAuth();</script>
+    <script src="js/domains.js"></script>
+</body>
+</html>

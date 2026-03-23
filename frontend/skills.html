@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge | Select Your Skills</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><div class="logo-dot"></div>SkillBridge</a>
+            <div class="nav-links" id="user-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="#" onclick="api.logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 900px; padding: 4rem 2rem;">
+        <div class="glass-card fade-in">
+            <h2 style="margin-bottom: 1rem">What are your top skills?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem">Select at least 3 skills to help us find the perfect domain for you.</p>
+            
+            <div class="form-group" style="max-width: 300px; margin-bottom: 2rem;">
+                <label for="experience">Current Level</label>
+                <select id="experience">
+                    <option value="student">Student / Beginner</option>
+                    <option value="professional">Professional / Advanced</option>
+                </select>
+            </div>
+
+            <div id="skills-container" class="skill-grid">
+                <!-- Skills will be loaded here -->
+                <p>Loading skills...</p>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem">
+                <p id="selection-count" style="font-weight: 600; color: var(--primary)">0 skills selected</p>
+                <button id="analyze-btn" class="btn btn-primary" disabled>Analyze My Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        checkAuth();
+        const user = api.getUser();
+        if (user && user.experience_level) {
+            document.getElementById('experience').value = user.experience_level;
+        }
+    </script>
+    <script src="js/skills.js"></script>
+</body>
+</html>

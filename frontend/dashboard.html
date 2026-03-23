@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge | Your Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        .user-stats {
+            display: flex;
+            gap: 2rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--secondary);
+            text-align: center;
+            min-width: 150px;
+        }
+        .stat-card h4 { font-size: 2rem; color: var(--primary); }
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        .skill-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><div class="logo-dot"></div>SkillBridge</a>
+            <div class="nav-links">
+                <a href="#" onclick="api.logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding: 4rem 2rem;">
+        <div id="active-path-container"></div>
+
+        <div class="grid" style="margin-bottom: 4rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))">
+            <div class="card" style="text-align: center; padding: 2rem">
+                <h4 style="color: var(--text-light); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Skills Identified</h4>
+                <p id="stat-skills" style="font-size: 3rem; font-weight: 800; color: var(--primary); margin-top: 1rem">0</p>
+            </div>
+            <div class="card" style="text-align: center; padding: 2rem">
+                <h4 style="color: var(--text-light); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Trials Started</h4>
+                <p id="stat-trials" style="font-size: 3rem; font-weight: 800; color: #FFA000; margin-top: 1rem">0</p>
+            </div>
+            <div class="card" style="text-align: center; padding: 2rem">
+                <h4 style="color: var(--text-light); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Completed</h4>
+                <p id="stat-completed" style="font-size: 3rem; font-weight: 800; color: var(--success); margin-top: 1rem">0</p>
+            </div>
+            <div class="card" style="text-align: center; padding: 2rem">
+                <h4 style="color: var(--text-light); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Bookmarks</h4>
+                <p id="stat-bookmarks" style="font-size: 3rem; font-weight: 800; color: var(--primary-dark); margin-top: 1rem">0</p>
+            </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns: 1fr 2fr; gap: 3rem">
+            <div>
+                <h3 style="margin-bottom: 2rem">My Skills</h3>
+                <div id="dashboard-skills" style="display: flex; flex-wrap: wrap; gap: 0.75rem">
+                    <!-- Skills will be loaded here -->
+                </div>
+                <a href="skills.html" class="btn btn-outline" style="margin-top: 2rem; display: inline-block">Update Skills</a>
+            </div>
+            
+            <div>
+                <h3 style="margin-bottom: 2rem">Recent Activity & Bookmarks</h3>
+                <div id="dashboard-bookmarks">
+                    <!-- Bookmarks will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/api.js"></script>
+    <script>checkAuth();</script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
