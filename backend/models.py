@@ -11,6 +11,9 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
     experience_level = db.Column(db.String(20), default='student')  # student / professional
+    semester = db.Column(db.Integer, nullable=True)
+    branch = db.Column(db.String(100), nullable=True)
+    interests = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     user_skills = db.relationship('UserSkill', backref='user', lazy=True, cascade='all, delete-orphan')
@@ -23,11 +26,22 @@ class User(db.Model):
         return check_password_hash(self.password_hash, password)
 
     def to_dict(self):
+        import json
+        interests_list = []
+        if self.interests:
+            try:
+                interests_list = json.loads(self.interests)
+            except:
+                pass
+
         return {
             'id': self.id,
             'username': self.username,
             'email': self.email,
             'experience_level': self.experience_level,
+            'semester': self.semester,
+            'branch': self.branch,
+            'interests': interests_list,
             'created_at': self.created_at.isoformat()
         }
 
