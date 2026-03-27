@@ -23,26 +23,103 @@
             </div>
 
             <form id="auth-form">
-                <div id="username-group" class="form-group hidden">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" placeholder="johndoe">
+                <div id="step-1" class="auth-step">
+                    <div id="username-group" class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="johndoe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="button" class="btn btn-primary hidden" style="width: 100%; margin-top: 1rem" id="btn-next">Next</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem" id="auth-submit">Login</button>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="john@example.com" required>
+
+                <div id="step-2" class="auth-step hidden">
+                    <div class="form-group">
+                        <label for="semester">Engineering Semester</label>
+                        <select id="semester">
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                            <option value="7">Semester 7</option>
+                            <option value="8">Semester 8</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="branch">Branch</label>
+                        <select id="branch" onchange="document.getElementById('other-branch').classList.toggle('hidden', this.value !== 'OTHER')">
+                            <option value="CSE">Computer Science & Engineering</option>
+                            <option value="IT">Information Technology</option>
+                            <option value="ECE">Electronics & Communication</option>
+                            <option value="MECH">Mechanical Engineering</option>
+                            <option value="CIVIL">Civil Engineering</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                        <input type="text" id="other-branch" placeholder="Please specify your branch" class="hidden" style="margin-top: 0.5rem; width: 100%;">
+                    </div>
+                    <div class="form-group">
+                        <label>Interests</label>
+                        <div class="interests-grid">
+                            <label class="interest-pill"><input type="checkbox" name="interest" value="Software Engineering"> <span>Software Eng.</span></label>
+                            <label class="interest-pill"><input type="checkbox" name="interest" value="Core Electronics & Hardware"> <span>Hardware/Electronics</span></label>
+                            <label class="interest-pill"><input type="checkbox" name="interest" value="Mechanical & Automotive"> <span>Mechanical</span></label>
+                            <label class="interest-pill"><input type="checkbox" name="interest" value="Civil & Infrastructure"> <span>Civil Eng.</span></label>
+                            <label class="interest-pill"><input type="checkbox" name="interest" value="Data Science & AI"> <span>Data & AI</span></label>
+                            <label class="interest-pill"><input type="checkbox" name="interest" value="Design & UX"> <span>Design & UX</span></label>
+                            <label class="interest-pill"><input type="checkbox" name="interest" value="Management & Business"> <span>Management</span></label>
+                            <label class="interest-pill"><input type="checkbox" name="interest" value="Research & Academics"> <span>Research</span></label>
+                        </div>
+                        <style>
+                            .interests-grid {
+                                display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.75rem;
+                            }
+                            .interest-pill {
+                                position: relative;
+                                display: block;
+                                cursor: pointer;
+                            }
+                            .interest-pill input {
+                                position: absolute;
+                                opacity: 0;
+                                cursor: pointer;
+                                height: 0;
+                                width: 0;
+                            }
+                            .interest-pill span {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                padding: 0.6rem;
+                                background: rgba(255, 255, 255, 0.05);
+                                border: 1px solid rgba(255, 255, 255, 0.1);
+                                border-radius: var(--radius-md, 8px);
+                                font-size: 0.9rem;
+                                color: var(--text-muted, #a1a1aa);
+                                transition: all 0.2s ease;
+                                text-align: center;
+                            }
+                            .interest-pill:hover span {
+                                border-color: rgba(255, 255, 255, 0.3);
+                                background: rgba(255, 255, 255, 0.08);
+                            }
+                            .interest-pill input:checked ~ span {
+                                background: rgba(147, 51, 234, 0.15);
+                                border-color: var(--primary, #9333ea);
+                                color: var(--primary, #9333ea);
+                                font-weight: 600;
+                            }
+                        </style>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem">
+                        <button type="button" class="btn btn-outline" style="flex: 1;" id="btn-prev">Back</button>
+                        <button type="submit" class="btn btn-primary" style="flex: 1;" id="auth-submit-register">Register</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="••••••••" required>
-                </div>
-                <div id="experience-group" class="form-group hidden">
-                    <label for="experience">Experience Level</label>
-                    <select id="experience">
-                        <option value="student">Student / Beginner</option>
-                        <option value="professional">Working Professional</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem" id="auth-submit">Login</button>
             </form>
             
             <p id="auth-message" style="text-align: center; margin-top: 1.5rem; color: var(--error); font-size: 0.9rem; min-height: 1.5rem"></p>
