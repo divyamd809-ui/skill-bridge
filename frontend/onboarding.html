@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge | Welcome</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .question-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .question-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option-label:hover {
+            border-color: var(--primary);
+            background: rgba(147, 51, 234, 0.05);
+        }
+        .option-label input[type="radio"] {
+            accent-color: var(--primary);
+        }
+        .onboarding-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .onboarding-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .onboarding-header p {
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><div class="logo-dot"></div>SkillBridge</a>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 600px; padding-top: 4rem;">
+        <div class="glass-card fade-in">
+            <div class="onboarding-header">
+                <h2>Just a few questions...</h2>
+                <p>We want to personalize your roadmap based on your profile.</p>
+            </div>
+            
+            <form id="onboarding-form">
+                <div id="questions-container">
+                    <!-- Dynamic questions will show here -->
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Continue to Dashboard</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/onboarding.js"></script>
+</body>
+</html>
