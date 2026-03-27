@@ -18,10 +18,14 @@ def register():
     if User.query.filter_by(email=data['email']).first():
         return jsonify({'message': 'Email already exists'}), 400
     
+    import json
     user = User(
         username=data['username'],
         email=data['email'],
-        experience_level=data.get('experience_level', 'student')
+        experience_level=data.get('experience_level', 'student'),
+        semester=data.get('semester'),
+        branch=data.get('branch'),
+        interests=json.dumps(data.get('interests', [])) if data.get('interests') else None
     )
     user.set_password(data['password'])
     
@@ -39,10 +43,13 @@ def register():
 def login():
     data = request.get_json()
     
-    if not data or not data.get('email') or not data.get('password'):
-        return jsonify({'message': 'Missing email or password'}), 400
+    login_id = data.get('username') or data.get('email')
+    password = data.get('password')
+
+    if not login_id or not password:
+        return jsonify({'message': 'Missing username/email or password'}), 400
     
-    user = User.query.filter_by(email=data['email']).first()
+    user = User.query.filter((User.email == login_id) | (User.username == login_id)).first()
     
     if user and user.check_password(data['password']):
         access_token = create_access_token(identity=str(user.id))
